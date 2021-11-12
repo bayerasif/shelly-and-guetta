@@ -23,13 +23,13 @@ def get_programs_df():
     return df
 
 def todays_episode_is_up(df, previous_df):
-    today = datetime.today().date() - timedelta(3)
+    today = datetime.today().date()
     is_up = df['date'].isin([today]).any()
     there_before = previous_df['date'].isin([today]).any()
     return is_up and not there_before
 
 def generate_message(df):
-    today = datetime.today().date() - timedelta(3)
+    today = datetime.today().date()
     title = df[df['date'].isin([today])].title.iloc[0]
     date = df[df['date'].isin([today])].date.iloc[0].strftime("%d/%m/%Y")
     msg = f'הפרק בשם "{title}" של תאריך {date} עלה וזמין להאזנה'
